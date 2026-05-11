@@ -45,10 +45,12 @@ const dom = {
     filters:    $('#filters'),
     searchInput:$('#search-input'),
     toasts:     $('#toast-container'),
+    reminderInput: $('#task-reminder'),
     editModal:  $('#edit-modal'),
     editForm:   $('#edit-form'),
     editTitleInput: $('#edit-task-title'),
     editDescInput: $('#edit-task-desc'),
+    editReminderInput: $('#edit-task-reminder'),
     editCancelBtn: $('#edit-cancel-btn'),
 };
 
@@ -67,12 +69,12 @@ async function fetchTasks(filter = 'all') {
     }
 }
 
-async function createTask(title, description) {
+async function createTask(title, description, reminder) {
     try {
         const res = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, description }),
+            body: JSON.stringify({ title, description, reminder }),
         });
         if (!res.ok) {
             const err = await res.json();
@@ -107,12 +109,12 @@ async function toggleTask(id) {
     }
 }
 
-async function editTask(id, title, description) {
+async function editTask(id, title, description, reminder) {
     try {
         const res = await fetch(`${API_URL}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, description }),
+            body: JSON.stringify({ title, description, reminder }),
         });
         if (!res.ok) {
             const err = await res.json();
@@ -169,8 +171,16 @@ function renderTasks() {
                 <div class="task-card__title">${escapeHtml(task.title)}</div>
                 ${task.description ? `<div class="task-card__desc">${escapeHtml(task.description)}</div>` : ''}
                 <div class="task-card__meta">
-                    <i data-lucide="calendar" class="task-card__meta-icon"></i>
-                    <span>${formatDate(task.created_at)}</span>
+                    <div class="task-card__meta-item">
+                        <i data-lucide="calendar" class="task-card__meta-icon"></i>
+                        <span>${formatDate(task.created_at)}</span>
+                    </div>
+                    ${task.reminder ? `
+                        <div class="task-card__meta-item task-card__meta-item--reminder">
+                            <i data-lucide="bell" class="task-card__meta-icon"></i>
+                            <span>${formatDate(task.reminder)}</span>
+                        </div>
+                    ` : ''}
                 </div>
             </div>
             <div class="task-card__actions">
@@ -351,12 +361,14 @@ function setupEventListeners() {
         e.preventDefault();
         const title = dom.titleInput.value.trim();
         const desc = dom.descInput.value.trim();
+        const reminder = dom.reminderInput.value;
         if (!title) return;
 
-        const task = await createTask(title, desc);
+        const task = await createTask(title, desc, reminder || null);
         if (task) {
             dom.titleInput.value = '';
             dom.descInput.value = '';
+            dom.reminderInput.value = '';
             dom.titleInput.focus();
             showToast('Tarefa adicionada!');
             await loadTasks();
@@ -397,6 +409,7 @@ function setupEventListeners() {
                 state.editingTaskId = id;
                 dom.editTitleInput.value = task.title;
                 dom.editDescInput.value = task.description || '';
+                dom.editReminderInput.value = task.reminder ? task.reminder.slice(0, 16) : '';
                 dom.editModal.classList.add('modal-overlay--active');
                 dom.editTitleInput.focus();
             }
@@ -416,9 +429,10 @@ function setupEventListeners() {
 
         const title = dom.editTitleInput.value.trim();
         const desc = dom.editDescInput.value.trim();
+        const reminder = dom.editReminderInput.value;
         if (!title) return;
 
-        const task = await editTask(state.editingTaskId, title, desc);
+        const task = await editTask(state.editingTaskId, title, desc, reminder || null);
         if (task) {
             dom.editModal.classList.remove('modal-overlay--active');
             state.editingTaskId = null;

@@ -131,17 +131,25 @@ class TaskStore:
                 return task
         return None
 
-    def edit(self, task_id: int, title: str, description: str = "") -> Optional[Task]:
+    def edit(self, task_id: int, title: str, description: str = "", reminder: Optional[str] = None) -> Optional[Task]:
         """
-        Atualiza o título e a descrição de uma tarefa existente.
+        Atualiza o título, descrição e lembrete de uma tarefa existente.
         """
         if not title or not title.strip():
             raise ValueError("O título da tarefa não pode ser vazio.")
+        
+        parsed_reminder = None
+        if reminder:
+            try:
+                parsed_reminder = datetime.fromisoformat(reminder)
+            except (ValueError, TypeError):
+                parsed_reminder = None
         
         for task in self._tasks:
             if task.id == task_id:
                 task.title = title.strip()
                 task.description = description.strip()
+                task.reminder = parsed_reminder
                 return task
         return None
 

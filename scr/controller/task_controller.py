@@ -83,19 +83,20 @@ def toggle_task(task_id):
 def edit_task(task_id):
     """
     PUT /api/tasks/<id>
-    Body JSON: { title, description? }
+    Body JSON: { title, description?, reminder? }
 
-    Atualiza título e descrição de uma tarefa.
+    Atualiza título, descrição e lembrete de uma tarefa.
     """
     data = request.get_json(silent=True) or {}
     title = data.get("title", "").strip()
     description = data.get("description", "")
+    reminder = data.get("reminder")
 
     if not title:
         return jsonify({"error": "O título da tarefa não pode ser vazio."}), 400
 
     try:
-        task = store.edit(task_id, title, description)
+        task = store.edit(task_id, title, description, reminder)
         if task is None:
             return jsonify({"error": "Tarefa não encontrada."}), 404
         return jsonify(task.to_dict())
