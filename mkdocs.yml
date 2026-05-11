@@ -1,4 +1,5 @@
 site_name: "Todo List — Gerenciador de Tarefas"
+site_url: https://alliciarocha.github.io/proj-exten/
 site_description: "Documentação do projeto Todo List com arquitetura MVC e Spec-Driven Development."
 site_author: "Allicia"
 
