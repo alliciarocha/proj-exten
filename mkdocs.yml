@@ -1,6 +1,7 @@
 site_name: "Todo List — Gerenciador de Tarefas"
 site_url: https://alliciarocha.github.io/proj-exten/
-site_description: "Documentação do projeto Todo List com arquitetura MVC e Spec-Driven Development."
+repo_url: https://github.com/alliciarocha/proj-exten
+site_description: "Documentação profissional completa do Todo List com arquitetura MVC e Specification-Driven Development (SDD)."
 site_author: "Allicia"
 
 theme:
@@ -12,31 +13,52 @@ theme:
       accent: amber
       toggle:
         icon: material/weather-sunny
-        name: Modo escuro
+        name: Mudar para modo escuro
     - scheme: slate
       primary: deep purple
       accent: amber
       toggle:
         icon: material/weather-night
-        name: Modo claro
+        name: Mudar para modo claro
   font:
     text: Inter
     code: Roboto Mono
   features:
     - navigation.instant
     - navigation.tracking
+    - navigation.tabs
+    - navigation.top
     - content.code.copy
     - search.suggest
+    - search.highlight
 
 nav:
-  - Início: index.md
-  - Arquitetura: architecture.md
+  - Home: index.md
+  - Início Rápido: quickstart.md
+  - Documentação:
+      - Arquitetura MVC: documentation/architecture.md
+      - Referência API: documentation/api.md
+      - Especificação SDD: documentation/specification.md
+  - Deployment:
+      - GitHub Pages: deployment/github-pages.md
+      - Vercel: deployment/vercel.md
+      - Troubleshooting: deployment/troubleshooting.md
+  - Desenvolvimento:
+      - Setup Local: development/setup.md
+      - Estrutura do Projeto: development/project-structure.md
+      - Guia de Testes: development/testing.md
+  - FAQ: faq.md
+  - Changelog: changelog.md
 
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - admonition
   - tables
+  - def_list
+  - footnotes

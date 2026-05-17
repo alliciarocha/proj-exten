@@ -2,24 +2,45 @@
 Controller: Gerenciador de Tarefas (Todo List)
 
 Blueprint Flask com endpoints REST para CRUD de tarefas.
-Comunica-se com o TaskStore (Model) e retorna JSON.
+Implementa tratamento de exceções global e respostas JSON limpas.
 """
 
 from flask import Blueprint, jsonify, request
 
-from scr.model.task_model import TaskStore
+from scr.model.task_model import EntityNotFoundError, TaskStore, ValidationError
 
 api = Blueprint("api", __name__, url_prefix="/api/tasks")
 
 store = TaskStore()
 
 
+# ---------- Global Exception Handlers ----------
+
+@api.errorhandler(ValidationError)
+def handle_validation_error(e):
+    return jsonify({"error": str(e)}), 400
+
+
+@api.errorhandler(EntityNotFoundError)
+def handle_entity_not_found_error(e):
+    return jsonify({"error": str(e)}), 404
+
+
+@api.errorhandler(Exception)
+def handle_general_error(e):
+    # Protege detalhes internos em produção, retornando mensagem padronizada
+    if isinstance(e, (ValidationError, EntityNotFoundError)):
+        raise e
+    return jsonify({"error": "Ocorreu um erro interno no servidor."}), 500
+
+
+# ---------- Endpoints RESTful ----------
+
 @api.route("", methods=["GET"])
 def list_tasks():
     """
     GET /api/tasks?filter=all|pending|done
-
-    Retorna lista de tarefas filtrada.
+    Retorna tarefas ativas (filtrando soft deleted).
     """
     filter_type = request.args.get("filter", "all")
     tasks = store.get_by_filter(filter_type)
@@ -34,23 +55,14 @@ def list_tasks():
 def create_task():
     """
     POST /api/tasks
-    Body JSON: { title, description?, reminder? }
-
-    Cria uma nova tarefa.
+    Cria nova tarefa com validação estrita.
     """
     data = request.get_json(silent=True) or {}
     title = data.get("title", "").strip()
     description = data.get("description", "")
     reminder = data.get("reminder")
 
-    if not title:
-        return jsonify({"error": "O título da tarefa não pode ser vazio."}), 400
-
-    try:
-        task = store.add(title, description, reminder)
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
-
+    task = store.add(title, description, reminder)
     return jsonify(task.to_dict()), 201
 
 
@@ -58,12 +70,9 @@ def create_task():
 def delete_task(task_id):
     """
     DELETE /api/tasks/<id>
-
-    Remove uma tarefa pelo ID.
+    Executa exclusão lógica (Soft Delete).
     """
-    removed = store.remove(task_id)
-    if not removed:
-        return jsonify({"error": "Tarefa não encontrada."}), 404
+    store.remove(task_id)
     return "", 204
 
 
@@ -71,34 +80,22 @@ def delete_task(task_id):
 def toggle_task(task_id):
     """
     PATCH /api/tasks/<id>/toggle
-
-    Alterna o status done/undone de uma tarefa.
+    Alterna status de conclusão.
     """
     task = store.toggle(task_id)
-    if task is None:
-        return jsonify({"error": "Tarefa não encontrada."}), 404
     return jsonify(task.to_dict())
+
 
 @api.route("/<int:task_id>", methods=["PUT"])
 def edit_task(task_id):
     """
     PUT /api/tasks/<id>
-    Body JSON: { title, description?, reminder? }
-
-    Atualiza título, descrição e lembrete de uma tarefa.
+    Atualiza dados de uma tarefa existente.
     """
     data = request.get_json(silent=True) or {}
     title = data.get("title", "").strip()
     description = data.get("description", "")
     reminder = data.get("reminder")
 
-    if not title:
-        return jsonify({"error": "O título da tarefa não pode ser vazio."}), 400
-
-    try:
-        task = store.edit(task_id, title, description, reminder)
-        if task is None:
-            return jsonify({"error": "Tarefa não encontrada."}), 404
-        return jsonify(task.to_dict())
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+    task = store.edit(task_id, title, description, reminder)
+    return jsonify(task.to_dict())

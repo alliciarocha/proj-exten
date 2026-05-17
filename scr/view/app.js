@@ -283,7 +283,7 @@ function updateGreeting() {
     else if (hour < 18) greeting = 'Boa tarde';
     else greeting = 'Boa noite';
 
-    dom.greeting.innerHTML = `${greeting}, <strong>Allicia</strong> <span>, comece a planejar hoje</span>`;
+    dom.greeting.innerHTML = `${greeting}, <strong>Allicia</strong><span>, comece a planejar hoje</span>`;
 }
 
 function updateSidebarDate() {
@@ -356,15 +356,26 @@ async function loadTasks() {
 // ============================================================
 
 function setupEventListeners() {
-    // Add task
+    // Add task (com proteção anti duplo clique / idempotência)
+    let isSubmitting = false;
     dom.form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (isSubmitting) return;
+
         const title = dom.titleInput.value.trim();
         const desc = dom.descInput.value.trim();
         const reminder = dom.reminderInput.value;
         if (!title) return;
 
+        isSubmitting = true;
+        const btn = dom.form.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
+
         const task = await createTask(title, desc, reminder || null);
+
+        isSubmitting = false;
+        if (btn) btn.disabled = false;
+
         if (task) {
             dom.titleInput.value = '';
             dom.descInput.value = '';
@@ -423,16 +434,25 @@ function setupEventListeners() {
         state.editingTaskId = null;
     });
 
+    let isEditSubmitting = false;
     dom.editForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!state.editingTaskId) return;
+        if (!state.editingTaskId || isEditSubmitting) return;
 
         const title = dom.editTitleInput.value.trim();
         const desc = dom.editDescInput.value.trim();
         const reminder = dom.editReminderInput.value;
         if (!title) return;
 
+        isEditSubmitting = true;
+        const btn = dom.editForm.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
+
         const task = await editTask(state.editingTaskId, title, desc, reminder || null);
+
+        isEditSubmitting = false;
+        if (btn) btn.disabled = false;
+
         if (task) {
             dom.editModal.classList.remove('modal-overlay--active');
             state.editingTaskId = null;

@@ -1,0 +1,11 @@
+{
+  "name": "todo-list-sdd-docs",
+  "version": "1.2.0",
+  "description": "Atalhos auxiliares para o MkDocs e automação local",
+  "scripts": {
+    "docs": "mkdocs serve",
+    "docs:build": "mkdocs build"
+  },
+  "author": "Allicia",
+  "license": "MIT"
+}
