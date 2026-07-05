@@ -12,7 +12,25 @@ Seja bem-vindo à documentação oficial do **Todo List**, uma aplicação web c
 - 🔍 **Busca Dinâmica e Filtros Rápidos**: Alterne instantaneamente entre tarefas *Todas*, *Pendentes* e *Concluídas*, ou busque por termos específicos sem recarregar a página.
 - 📅 **Mini Calendário Interativo**: Navegue entre meses na barra lateral e acompanhe o dia atual em destaque.
 - 📊 **Estatísticas em Tempo Real**: Contadores de produtividade atualizados instantaneamente.
-- 🚀 **Pronto para Nuvem**: Configurado para deploy contínuo e automatizado via GitHub Actions e Vercel.
+- 🚀 **Pronto para Nuvem**: Configurado para deploy contínuo e automatizado via GitHub Actions, Vercel e Render.
+
+---
+
+## 🧭 Fluxo do Spec-Kit
+
+O projeto segue um ciclo de desenvolvimento guiado por Spec-Kit com etapas bem definidas:
+
+1. **Constituição** — estabelece os princípios de arquitetura, segurança e manutenção.
+2. **Especificação** — detalha o comportamento esperado do recurso.
+3. **Planejamento** — organiza a implementação em blocos verificáveis.
+4. **Implementação** — entrega o código e os artefatos necessários.
+5. **Validação** — confirma a qualidade e a disponibilidade para produção.
+
+---
+
+## 🚀 Produção
+
+A aplicação já está preparada para execução em produção com Gunicorn. A configuração de deploy para Render está disponível em [deployment/production.md](deployment/production.md), e a publicação da documentação é feita automaticamente via GitHub Pages.
 
 ---
 

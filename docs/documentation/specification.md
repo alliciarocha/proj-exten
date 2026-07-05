@@ -1,6 +1,22 @@
 # 📋 Especificação SDD e Constituição Arquitetural
 
-Este documento descreve a constituição e as diretrizes de engenharia de software avançadas que guiam o desenvolvimento do **Todo List**, ratificadas nos artefatos do `.spec-kit/constitution.md`.
+Este documento descreve a constituição e as diretrizes de engenharia de software avançadas que guiam o desenvolvimento do **Todo List**, ratificadas nos artefatos do diretório `.spec-kit`.
+
+---
+
+## 🧭 Etapas do Fluxo Spec-Kit
+
+O projeto utiliza um fluxo de trabalho baseado em Spec-Kit com as seguintes etapas:
+
+1. **Constituição** — define os princípios arquiteturais, de segurança e manutenção.
+2. **Especificação** — registra o escopo, os requisitos e as decisões de implementação.
+3. **Planejamento** — transforma a especificação em entregas menores e verificáveis.
+4. **Implementação** — executa o desenvolvimento com base nos artefatos definidos.
+5. **Validação** — confirma a qualidade do código, da documentação e da preparação para produção.
+
+## 🚀 Preparação para Produção
+
+A aplicação foi estruturada para ser executada em ambiente de produção com Gunicorn. A configuração de deploy para o Render está definida em render.yaml, enquanto a documentação é publicada automaticamente via GitHub Pages.
 
 ---
 

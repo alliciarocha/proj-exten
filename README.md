@@ -46,5 +46,19 @@ Toda a arquitetura de código, endpoints da API REST, decisões de design system
 
 👉 **[Portal de Documentação — Gerenciador de Tarefas](https://alliciarocha.github.io/proj-exten/)**
 
+## 🧭 Etapas do Spec-Kit
+
+O fluxo do Spec-Kit no projeto está organizado em cinco etapas claras:
+
+1. **Constituição** — define os princípios arquiteturais e as regras de engenharia.
+2. **Especificação** — descreve o escopo, os requisitos e as decisões de implementação.
+3. **Planejamento** — organiza a execução em entregas menores e verificáveis.
+4. **Implementação** — transforma o plano em código, testes e documentação.
+5. **Validação** — confirma qualidade, consistência e preparação para produção.
+
+## 🚀 Publicação em Produção
+
+A aplicação já está preparada para execução em ambiente de produção com Gunicorn. O deploy pode ser realizado em plataformas como Render, utilizando a configuração presente em render.yaml e o entrypoint principal em main:app.
+
 ---
 *Desenvolvido com foco na excelência visual, manutenibilidade de longo prazo e melhores práticas de engenharia de software.*

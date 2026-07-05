@@ -41,6 +41,7 @@ nav:
       - Especificação SDD: documentation/specification.md
   - Deployment:
       - GitHub Pages: deployment/github-pages.md
+      - Produção: deployment/production.md
       - Vercel: deployment/vercel.md
       - Troubleshooting: deployment/troubleshooting.md
   - Desenvolvimento:
