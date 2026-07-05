@@ -399,14 +399,20 @@ function setupEventListeners() {
 
         const deleteBtn = e.target.closest('[data-delete]');
         if (deleteBtn) {
+            deleteBtn.disabled = true;
             const id = parseInt(deleteBtn.dataset.delete);
             const card = deleteBtn.closest('.task-card');
+            
+            // Remove from DOM optimistically for animation
             card.classList.add('task-card--removing');
+            
+            // Do API call immediately
+            const ok = await deleteTask(id);
+            if (ok) {
+                showToast('Tarefa removida.');
+            }
+            
             setTimeout(async () => {
-                const ok = await deleteTask(id);
-                if (ok) {
-                    showToast('Tarefa removida.');
-                }
                 await loadTasks();
             }, 350);
             return;

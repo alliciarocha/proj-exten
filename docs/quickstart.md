@@ -35,9 +35,9 @@ source venv/bin/activate
 ```
 
 ### 3. Instalar Dependências
-Instale o Flask e o gerador de documentação:
+Instale o Flask e demais bibliotecas backend:
 ```bash
-pip install flask mkdocs mkdocs-material
+pip install flask
 ```
 
 ### 4. Iniciar o Servidor de Desenvolvimento

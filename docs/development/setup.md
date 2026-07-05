@@ -1,12 +1,12 @@
 # ⚙️ Configuração do Ambiente Local (Setup Local)
 
-Guia de configuração avançada para engenheiros de software e colaboradores que desejam modificar a aplicação, a API ou a documentação estática em suas próprias máquinas.
+Guia de configuração avançada para engenheiros de software e colaboradores que desejam modificar a aplicação ou a API em suas próprias máquinas.
 
 ---
 
 ## 🛠️ Ferramentas Recomendadas
 
-- **IDE**: Visual Studio Code (VS Code) com as extensões *Python* e *MkDocs*.
+- **IDE**: Visual Studio Code (VS Code) com a extensão *Python*.
 - **Controle de Versão**: Git cliente de linha de comando.
 - **Navegador**: Google Chrome ou Firefox Developer Edition para inspeção de rede (Network tab) e console JS.
 
@@ -33,16 +33,14 @@ source venv/bin/activate
 ```
 
 ### 3. Instalação Completa do Ecossistema
-Instale todas as dependências necessárias de backend e documentação:
+Instale todas as dependências necessárias do backend:
 ```bash
-pip install flask mkdocs mkdocs-material
+pip install flask
 ```
 
 ---
 
-## 🖥️ Execução Simulatânea (Backend + Docs)
-
-Ao realizar desenvolvimento ativo, você pode querer testar a aplicação web e visualizar as mudanças da documentação simultaneamente.
+## 🖥️ Execução Local
 
 ### Terminal 1: Servidor Flask (Aplicação Web)
 Abra um terminal, ative o ambiente virtual e inicie o backend REST:
@@ -50,12 +48,3 @@ Abra um terminal, ative o ambiente virtual e inicie o backend REST:
 python main.py
 ```
 Acesse `http://localhost:5000` para testar a interface e os endpoints da API.
-
----
-
-### Terminal 2: Servidor MkDocs (Live Reload da Documentação)
-Abra um segundo terminal na mesma pasta e inicie o servidor de documentação com recarregamento instantâneo:
-```bash
-mkdocs serve
-```
-Acesse `http://localhost:8000`. Qualquer alteração salva nos arquivos `*.md` dentro de `docs/` será recarregada automaticamente na tela em milissegundos!

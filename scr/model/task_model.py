@@ -170,9 +170,9 @@ class TaskStore:
         if not title or not title.strip():
             raise ValidationError("O título da tarefa não pode ser vazio.")
 
-        # Sanitização Anti-XSS e limitação de tamanho (OWASP)
-        clean_title = html.escape(title.strip())[:120]
-        clean_desc = html.escape(description.strip())[:300]
+        # Validação e limitação de tamanho (OWASP)
+        clean_title = title.strip()[:120]
+        clean_desc = description.strip()[:300]
 
         if not clean_title:
             raise ValidationError("O título da tarefa não pode ser vazio após sanitização.")
@@ -233,8 +233,8 @@ class TaskStore:
         if not title or not title.strip():
             raise ValidationError("O título da tarefa não pode ser vazio.")
 
-        clean_title = html.escape(title.strip())[:120]
-        clean_desc = html.escape(description.strip())[:300]
+        clean_title = title.strip()[:120]
+        clean_desc = description.strip()[:300]
 
         if not clean_title:
             raise ValidationError("O título da tarefa não pode ser vazio após sanitização.")
