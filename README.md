@@ -1,64 +1,70 @@
-# Todo List — Gerenciador de Tarefas Premium
+# TODO List — SPEC-DRIVEN Development
 
-[![Documentação MkDocs](https://img.shields.io/badge/📖_Documentação-MkDocs-2563EB?style=for-the-badge)](https://alliciarocha.github.io/proj-exten/)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Flask MVC](https://img.shields.io/badge/Arquitetura-MVC-0D9488?style=for-the-badge)](https://alliciarocha.github.io/proj-exten/)
+Aplicação web de gerenciamento de tarefas desenvolvida com a metodologia SPEC-DRIVEN Development usando o toolkit spec-kit.
 
-Um gerenciador de tarefas moderno, elegante e robusto, construído sob o padrão arquitetural **MVC (Model-View-Controller)** e os princípios do **Specification-Driven Development (SDD)**. A interface foi rigorosamente desenhada com a estética **Soft UI Premium**, elementos em *glassmorphism* e conformidade com o sistema de grid de 8 pontos (8x8 rule).
+## Funcionalidades
+- Cadastrar tarefas (título, descrição, lembrete)
+- Remover tarefas com confirmação (exclusão lógica / soft delete)
+- Marcar tarefas como concluídas
+- Lembretes e estatísticas atualizadas em tempo real
+- Filtrar por status (todas, pendentes, concluídas)
 
-🔗 **[Acesse a Documentação Oficial Completa](https://alliciarocha.github.io/proj-exten/)**
+## Arquitetura
+- **Padrão:** MVC (Model-View-Controller)
+- **Estrutura:** Mono-repo
+- **Armazenamento:** Arquivo JSON local (`storage.json`)
+- **Backend:** Python + Flask
+- **Frontend:** HTML/CSS/JS vanilla (Soft UI Premium)
+- **Documentação:** MkDocs + Material theme
 
----
+## Início Rápido
 
-## ✨ Principais Funcionalidades & Destaques
-
-- **Interface Imersiva Full-Bleed:** Janela de visualização expansiva em tela cheia com paleta azul premium (`Cool Blues`) e total imersão visual sem barras de rolagem nativas.
-- **Minicalendário & Placar em Tempo Real:** Acompanhamento interativo do calendário mensal e contadores automáticos de tarefas concluídas e pendentes.
-- **Idempotência & Proteção Anti-Duplo Clique:** Travas ativas (`isSubmitting`) no frontend e no backend para evitar duplicação acidental de registros.
-- **Exclusão Lógica (Soft Delete):** Metadados de auditoria completos (`created_at`, `updated_at`, `deleted_at`). A exclusão oculta o registro sem apagar o histórico físico.
-- **Segurança Robusta (OWASP):** Higienização de entradas (XSS sanitization via `html.escape`) e validação rigorosa de DTOs tipados em Python (`@dataclass`).
-
----
-
-## 🚀 Como Executar Localmente
-
-### 1. Pré-requisitos
-- Python 3.10 ou superior.
-
-### 2. Passo a Passo
-
+### Clonar
 ```bash
-# Clone o repositório
 git clone https://github.com/alliciarocha/proj-exten.git
 cd proj-exten
-
-# Execute a aplicação Flask (o backend e o servidor estático serão iniciados)
-python main.py
 ```
 
-O servidor estará disponível no seu navegador em: **`http://127.0.0.1:5000`**
+### Instalar
+Crie seu ambiente virtual e instale as dependências:
+```bash
+# Windows
+python -m venv venv
+.\venv\Scripts\activate
 
----
+# Linux / macOS
+python3 -m venv venv
+source venv/bin/activate
 
-## 📚 Documentação e Especificação Arquitetural
+# Instalar dependências
+pip install -r requirements.txt
+```
 
-Toda a arquitetura de código, endpoints da API REST, decisões de design system e justificativas de engenharia estão minuciosamente registradas em nosso portal gerado via MkDocs:
+### Executar
+```bash
+python main.py
+```
+Acesse `http://localhost:5000`.
 
-👉 **[Portal de Documentação — Gerenciador de Tarefas](https://alliciarocha.github.io/proj-exten/)**
+## Estrutura do Projeto
+```text
+├── .specify/                # Artefatos SPEC-DRIVEN
+│   ├── memory/constitution.md
+│   └── specs/todo-list/
+├── scr/                     # Código-fonte MVC
+│   ├── model/
+│   ├── view/
+│   └── controller/
+├── docs/                    # Documentação MkDocs
+├── main.py                  # Entry point
+├── test_app.py              # Testes Automatizados
+└── mkdocs.yml
+```
 
-## 🧭 Etapas do Spec-Kit
+## Links
+- **Aplicação em Produção:** [https://proj-exten.onrender.com/](https://proj-exten.onrender.com/)
+- **Repositório:** [https://github.com/alliciarocha/proj-exten](https://github.com/alliciarocha/proj-exten)
+- **Documentação Online:** [https://alliciarocha.github.io/proj-exten/](https://alliciarocha.github.io/proj-exten/)
 
-O fluxo do Spec-Kit no projeto está organizado em cinco etapas claras:
-
-1. **Constituição** — define os princípios arquiteturais e as regras de engenharia.
-2. **Especificação** — descreve o escopo, os requisitos e as decisões de implementação.
-3. **Planejamento** — organiza a execução em entregas menores e verificáveis.
-4. **Implementação** — transforma o plano em código, testes e documentação.
-5. **Validação** — confirma qualidade, consistência e preparação para produção.
-
-## 🚀 Publicação em Produção
-
-A aplicação já está preparada para execução em ambiente de produção com Gunicorn. O deploy pode ser realizado em plataformas como Render, utilizando a configuração presente em render.yaml e o entrypoint principal em main:app.
-
----
-*Desenvolvido com foco na excelência visual, manutenibilidade de longo prazo e melhores práticas de engenharia de software.*
+## Licença
+MIT
