@@ -59,6 +59,10 @@ Acesse `http://localhost:5000`.
 ├── .specify/                # Artefatos SPEC-DRIVEN
 │   ├── memory/constitution.md
 │   └── specs/todo-list/
+│       ├── spec.md
+│       ├── plan.md
+│       ├── tasks.md
+│       └── comand.md
 ├── scr/                     # Código-fonte MVC
 │   ├── model/
 │   ├── view/
