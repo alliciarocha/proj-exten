@@ -1,8 +1,9 @@
 # TODO List — SPEC-DRIVEN Development
 
-Aplicação web de gerenciamento de tarefas desenvolvida com a metodologia SPEC-DRIVEN Development usando o toolkit spec-kit.
+Aplicação web de gerenciamento de tarefas desenvolvida com SPEC-DRIVEN Development usando o toolkit spec-kit.
 
 ## Funcionalidades
+
 - Cadastrar tarefas (título, descrição, lembrete)
 - Remover tarefas com confirmação (exclusão lógica / soft delete)
 - Marcar tarefas como concluídas
@@ -10,6 +11,7 @@ Aplicação web de gerenciamento de tarefas desenvolvida com a metodologia SPEC-
 - Filtrar por status (todas, pendentes, concluídas)
 
 ## Arquitetura
+
 - **Padrão:** MVC (Model-View-Controller)
 - **Estrutura:** Mono-repo
 - **Armazenamento:** Arquivo JSON local (`storage.json`)
@@ -20,13 +22,16 @@ Aplicação web de gerenciamento de tarefas desenvolvida com a metodologia SPEC-
 ## Início Rápido
 
 ### Clonar
+
 ```bash
 git clone https://github.com/alliciarocha/proj-exten.git
 cd proj-exten
 ```
 
 ### Instalar
+
 Crie seu ambiente virtual e instale as dependências:
+
 ```bash
 # Windows
 python -m venv venv
@@ -41,12 +46,15 @@ pip install -r requirements.txt
 ```
 
 ### Executar
+
 ```bash
 python main.py
 ```
+
 Acesse `http://localhost:5000`.
 
 ## Estrutura do Projeto
+
 ```text
 ├── .specify/                # Artefatos SPEC-DRIVEN
 │   ├── memory/constitution.md
@@ -57,14 +65,15 @@ Acesse `http://localhost:5000`.
 │   └── controller/
 ├── docs/                    # Documentação MkDocs
 ├── main.py                  # Entry point
-├── test_app.py              # Testes Automatizados
 └── mkdocs.yml
 ```
 
 ## Links
+
 - **Aplicação em Produção:** [https://proj-exten.onrender.com/](https://proj-exten.onrender.com/)
 - **Repositório:** [https://github.com/alliciarocha/proj-exten](https://github.com/alliciarocha/proj-exten)
 - **Documentação Online:** [https://alliciarocha.github.io/proj-exten/](https://alliciarocha.github.io/proj-exten/)
 
 ## Licença
+
 MIT

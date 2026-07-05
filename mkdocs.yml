@@ -47,7 +47,6 @@ nav:
   - Desenvolvimento:
       - Setup Local: development/setup.md
       - Estrutura do Projeto: development/project-structure.md
-      - Guia de Testes: development/testing.md
   - FAQ: faq.md
   - Changelog: changelog.md
 
