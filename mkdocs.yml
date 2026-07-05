@@ -39,6 +39,7 @@ nav:
       - Arquitetura MVC: documentation/architecture.md
       - Referência API: documentation/api.md
       - Especificação SDD: documentation/specification.md
+      - Justificativas do Projeto: documentation/justificativas.md
   - Deployment:
       - GitHub Pages: deployment/github-pages.md
       - Produção: deployment/production.md

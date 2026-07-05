@@ -1,6 +1,6 @@
 # TODO List — SPEC-DRIVEN Development
 
-Aplicação web de gerenciamento de tarefas desenvolvida com SPEC-DRIVEN Development usando o toolkit spec-kit.
+Este projeto consiste no desenvolvimento de uma aplicação web para gerenciamento de tarefas, utilizando a abordagem **Specification-Driven Development (Spec-Driven Development)** por meio do toolkit **spec-kit**. A aplicação foi estruturada seguindo a arquitetura **Model-View-Controller (MVC)**, organizada em um **monorepositório (monorepo)** e utilizando armazenamento em memória local para persistência dos dados durante a execução.
 
 ## Funcionalidades
 

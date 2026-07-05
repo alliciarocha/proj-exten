@@ -25,3 +25,10 @@
   - Ação Primária / Destaques: Azul Royal Premium (`#2563EB`) e Bright Blue (`#3B82F6`)
   - Superfícies: Branco puro com suporte a *glassmorphism* (`backdrop-filter: blur(24px)`)
 - **Ergonomia:** Ocultação de barras de rolagem nativas para manter a imersão de design de aplicativo nativo.
+
+## 5. Justificativas do Projeto (Escopo e Arquitetura)
+
+- **Adoção do Padrão MVC:** O padrão Model-View-Controller foi escolhido para separar claramente a lógica de negócios (Model), a interface do usuário (View) e o roteamento/processamento de requisições (Controller). Isso garante que o código seja manutenível, escalável e de fácil entendimento, requisitos cruciais em projetos acadêmicos e profissionais.
+- **Python + Flask:** A escolha do microframework Flask permite a criação de uma API REST leve e de alta performance sem a sobrecarga de frameworks complexos, mantendo o repositório limpo e focado no essencial.
+- **Armazenamento em Arquivo (JSON):** Optou-se por utilizar persistência local em arquivo JSON para eliminar a dependência de servidores de banco de dados externos, facilitando testes locais e reduzindo atritos na correção pelo professor.
+- **Abordagem Spec-Driven:** A utilização da metodologia Spec-Driven Development (via toolkit `.specify/`) justifica-se pela necessidade de garantir o rigor da Engenharia de Software. O planejamento formal prévio evita programação sem estrutura ("vibe coding"), garantindo rastreabilidade e garantia de qualidade (QA) para todas as funcionalidades.
