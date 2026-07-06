@@ -5,11 +5,10 @@ site_description: Documentação do gerenciador de tarefas MVC
 site_author: Allicia
 
 nav:
-  - ToDo List:
-      - Início: index.md
-      - Arquitetura: architecture.md
-      - Uso: usage.md
-      - Implantação: deployment.md
+  - Início: index.md
+  - Arquitetura: architecture.md
+  - Uso: usage.md
+  - Implantação: deployment.md
 
 theme:
   name: material
