@@ -1,34 +1,46 @@
-# Feature: Gerenciador de Tarefas — Constituição de Software
+<!--
+Sync Impact Report:
+- Version change: Initial → 1.0.0
+- Modified principles: N/A (Initial Setup)
+- Added sections: Performance and UX Standards, Code Organization
+- Removed sections: N/A
+- Templates requiring updates: 
+  - to_do/.specify/templates/plan-template.md (⚠ pending)
+  - to_do/.specify/templates/spec-template.md (⚠ pending)
+  - to_do/.specify/templates/tasks-template.md (⚠ pending)
+- Follow-up TODOs: N/A
+-->
 
-## 1. Requisitos Funcionais
+# Gerenciador de Tarefas (Todo List) Constitution
 
-1. **Cadastrar Tarefa:** O sistema aceita entrada tipada e higienizada para título, descrição e horário de lembrete.
-2. **Remover Tarefa:** Exclusão lógica (Soft Delete) via ID, preservando a integridade de histórico e auditoria.
-3. **Lembretes e Status:** Alternância instantânea de conclusão (toggle) com recálculo automático em tempo real no placar de estatísticas e destaque visual no minicalendário interativo.
+## Core Principles
 
-## 2. Regras de Negócio e Práticas de Engenharia
+### I. Estrita Arquitetura MVC
+O padrão Model-View-Controller DEVE ser usado para separar rigorosamente a lógica de negócios (Model), a interface do usuário (View) e o roteamento (Controller). A separação garante código limpo, manutenível e escalável, e nenhuma exceção deve ser aberta que quebre essa organização lógica.
 
-- **Validação e Limitação:** Proibição de títulos vazios e restrição de comprimento (título até 120 caracteres, descrição até 300 caracteres) para prevenir estouro de layout e exaustão de armazenamento.
-- **Idempotência Transacional:** Mecanismo de bloqueio ativo (`isSubmitting`) no frontend e backend para impedir duplo envio e duplicação acidental de registros.
-- **Sanitização de Segurança (OWASP):** Sanitização obrigatória via escape de strings HTML contra injeção de scripts (XSS).
+### II. Simplicidade e Localidade (Flask + JSON)
+A aplicação DEVE utilizar Flask como microframework e persistência local através de arquivo JSON (`storage.json`). NÃO devem ser adicionados servidores de banco de dados externos (como PostgreSQL ou MySQL). O foco é manter a leveza do repositório, facilitando testes e deploy.
 
-## 3. Estrutura de Dados (Model & DTO)
+### III. UI Imersiva e Higienização de Dados (Security-First)
+O frontend DEVE seguir as diretrizes de Soft UI Premium, utilizando um sistema de grid de 8x8 pixels para alinhamentos (ex: 8px, 16px, 24px) e paleta harmoniosa. Além disso, a segurança NÃO é opcional: toda entrada do usuário DEVE ser sanitizada rigorosamente (escapando HTML para evitar injeção de XSS) e tamanhos de título/descrição devem ser limitados para evitar estouros de layout.
 
-- `Task { id: int, title: string, description: string, done: bool, reminder: datetime, created_at: datetime, updated_at: datetime, deleted_at: datetime }`
+### IV. Idempotência e Tratamento Transacional
+A interface DEVE prevenir envios duplos implementando estados visuais e lógicos de bloqueio (`isSubmitting`) tanto no frontend quanto no backend. A remoção de itens do banco DEVE sempre ser exclusão lógica (soft delete).
 
-## 4. Design System & UI Architecture (Soft UI Premium)
+### V. Spec-Driven Development Obrigatório
+Toda e qualquer nova funcionalidade DEVE ser projetada e especificada através do toolkit Spec-Kit antes de qualquer linha de código ser escrita. Programação desestruturada (vibe coding) é inaceitável, e todo commit deve ser passível de rastreabilidade até sua especificação geradora.
 
-- **Layout Imersivo Full-Bleed:** Ocupação total da janela de visualização (`100vw`/`100vh`) dividida em barra lateral fixa na esquerda (`416px`) e painel expansivo de tarefas na direita.
-- **Sistema de Grid de 8 Pontos (8x8 Rule):** Rigoroso alinhamento geométrico onde margens, preenchimentos e tamanhos são múltiplos exatos de 8px (ex: `16px`, `24px`, `32px`, `48px`).
-- **Paleta Curada (Cool Blues):**
-  - Fundo da Página: Gradiente imersivo `#F0F7FF` a `#E0F2FE`
-  - Ação Primária / Destaques: Azul Royal Premium (`#2563EB`) e Bright Blue (`#3B82F6`)
-  - Superfícies: Branco puro com suporte a *glassmorphism* (`backdrop-filter: blur(24px)`)
-- **Ergonomia:** Ocultação de barras de rolagem nativas para manter a imersão de design de aplicativo nativo.
+## Performance and UX Standards
 
-## 5. Justificativas do Projeto (Escopo e Arquitetura)
+Todas as transições visuais (inclusão, alteração de status e exclusão) DEVEM refletir instantaneamente na tela, recalculando métricas de estatística em tempo real e alterando calendários sem a necessidade de refresh completo da página. A UI DEVE esconder barras de rolagem desnecessárias para garantir aparência nativa.
 
-- **Adoção do Padrão MVC:** O padrão Model-View-Controller foi escolhido para separar claramente a lógica de negócios (Model), a interface do usuário (View) e o roteamento/processamento de requisições (Controller). Isso garante que o código seja manutenível, escalável e de fácil entendimento, requisitos cruciais em projetos acadêmicos e profissionais.
-- **Python + Flask:** A escolha do microframework Flask permite a criação de uma API REST leve e de alta performance sem a sobrecarga de frameworks complexos, mantendo o repositório limpo e focado no essencial.
-- **Armazenamento em Arquivo (JSON):** Optou-se por utilizar persistência local em arquivo JSON para eliminar a dependência de servidores de banco de dados externos, facilitando testes locais e reduzindo atritos na correção pelo professor.
-- **Abordagem Spec-Driven:** A utilização da metodologia Spec-Driven Development (via toolkit `.specify/`) justifica-se pela necessidade de garantir o rigor da Engenharia de Software. O planejamento formal prévio evita programação sem estrutura ("vibe coding"), garantindo rastreabilidade e garantia de qualidade (QA) para todas as funcionalidades.
+## Code Organization
+
+O código-fonte DEVE estar integralmente isolado nas subpastas apropriadas (por exemplo, dentro do pacote `scr/` do app), não poluindo a raiz do projeto de especificações (que contém configurações como `render.yaml` e arquivos gerados pelo Spec Kit).
+
+## Governance
+
+A Constituição atua como documento fundacional para toda a engenharia deste projeto e tem precedência final sobre qualquer convenção técnica ou framework de terceiros.
+As alterações nesta Constituição DEVEM justificar claramente o raciocínio técnico e exigir aprovação unânime. Todo Pull Request ou revisão de código DEVE verificar se a implementação está em conformidade com as regras aqui descritas.
+
+**Version**: 1.0.0 | **Ratified**: 2026-07-06 | **Last Amended**: 2026-07-06
