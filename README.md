@@ -56,13 +56,16 @@ Acesse `http://localhost:5000`.
 ## Estrutura do Projeto
 
 ```text
-├── .specify/                # Artefatos SPEC-DRIVEN
-│   ├── memory/constitution.md
-│   └── specs/todo-list/
+├── .specify/                # Configurações do Spec Kit
+│   └── memory/constitution.md
+├── specs/                   # Artefatos SPEC-DRIVEN
+│   └── 001-todo-list/
 │       ├── spec.md
 │       ├── plan.md
-│       ├── tasks.md
-│       └── comand.md
+│       ├── research.md
+│       ├── data-model.md
+│       ├── quickstart.md
+│       └── tasks.md
 ├── scr/                     # Código-fonte MVC
 │   ├── model/
 │   ├── view/
