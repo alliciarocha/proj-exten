@@ -26,18 +26,16 @@ theme:
   features:
     - navigation.instant
     - navigation.tracking
-    - navigation.tabs
     - navigation.top
     - content.code.copy
     - search.suggest
     - search.highlight
 
 nav:
-  - ToDo List:
-      - Início: index.md
-      - Arquitetura: architecture.md
-      - Uso: usage.md
-      - Implantação: deployment.md
+  - Início: index.md
+  - Arquitetura: architecture.md
+  - Uso: usage.md
+  - Implantação: deployment.md
 
 markdown_extensions:
   - pymdownx.highlight:
