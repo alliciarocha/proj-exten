@@ -4,11 +4,9 @@ Aplicacao web para gerenciamento de tarefas, desenvolvida com a abordagem Specif
 
 ## Funcionalidades
 
-- Cadastrar tarefas com titulo, descricao e lembrete opcional
+- Cadastrar tarefas (titulo, descricao, lembrete)
 - Remover tarefas com confirmacao (exclusao logica / soft delete)
 - Marcar tarefas como concluidas
-- Editar tarefas existentes
-- Filtrar por status (todas, pendentes, concluidas)
 - Lembretes e estatisticas atualizadas em tempo real
-- Sanitizacao de entrada contra XSS (OWASP)
-- Logs estruturados de transacao (observabilidade)
+- Filtrar por status (todas, pendentes, concluidas)
+
