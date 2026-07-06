@@ -1,8 +1,14 @@
 site_name: "ToDo List"
 site_url: https://alliciarocha.github.io/proj-exten/
 repo_url: https://github.com/alliciarocha/proj-exten
-site_description: "Documentação do ToDo List com arquitetura MVC."
-site_author: "Allicia"
+site_description: Documentação do gerenciador de tarefas MVC
+site_author: Allicia
+
+nav:
+  - Início: index.md
+  - Arquitetura: architecture.md
+  - Uso: usage.md
+  - Implantação: deployment.md
 
 theme:
   name: material
@@ -11,42 +17,5 @@ theme:
     - scheme: default
       primary: purple
       accent: amber
-      toggle:
-        icon: material/weather-sunny
-        name: Mudar para modo escuro
-    - scheme: slate
-      primary: purple
-      accent: amber
-      toggle:
-        icon: material/weather-night
-        name: Mudar para modo claro
-  font:
-    text: Inter
-    code: Roboto Mono
-  features:
-    - navigation.instant
-    - navigation.tracking
-    - navigation.top
-    - content.code.copy
-    - search.suggest
-    - search.highlight
 
-nav:
-  - ToDo List:
-      - Início: index.md
-      - Arquitetura: architecture.md
-      - Uso: usage.md
-      - Implantação: deployment.md
-
-markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - admonition
-  - tables
-  - def_list
-  - footnotes
+plugins: []
