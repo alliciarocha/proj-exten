@@ -9,13 +9,13 @@ theme:
   language: pt-BR
   palette:
     - scheme: default
-      primary: deep purple
+      primary: purple
       accent: amber
       toggle:
         icon: material/weather-sunny
         name: Mudar para modo escuro
     - scheme: slate
-      primary: deep purple
+      primary: purple
       accent: amber
       toggle:
         icon: material/weather-night
@@ -33,10 +33,11 @@ theme:
     - search.highlight
 
 nav:
-  - Início: index.md
-  - Arquitetura: architecture.md
-  - Uso: usage.md
-  - Implantação: deployment.md
+  - ToDo List:
+      - Início: index.md
+      - Arquitetura: architecture.md
+      - Uso: usage.md
+      - Implantação: deployment.md
 
 markdown_extensions:
   - pymdownx.highlight:
