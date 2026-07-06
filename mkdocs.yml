@@ -32,10 +32,11 @@ theme:
     - search.highlight
 
 nav:
-  - Início: index.md
-  - Arquitetura: architecture.md
-  - Uso: usage.md
-  - Implantação: deployment.md
+  - ToDo List:
+      - Início: index.md
+      - Arquitetura: architecture.md
+      - Uso: usage.md
+      - Implantação: deployment.md
 
 markdown_extensions:
   - pymdownx.highlight:
