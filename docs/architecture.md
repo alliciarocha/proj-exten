@@ -1,8 +1,9 @@
----
-redirect: documentation/architecture.md
----
+# Arquitetura
 
-# 🏗️ Arquitetura MVC
+A aplicação segue o padrão MVC:
 
-> [!NOTE]
-> Este arquivo foi movido e expandido. Acesse a nova página completa em [documentation/architecture.md](documentation/architecture.md).
+- Model: representa as tarefas e seus dados básicos
+- View: renderiza a interface HTML para o usuário
+- Controller: coordena a criação, remoção e avaliação de lembretes
+
+A persistência é mantida em memória durante a execução da aplicação, sem banco de dados.

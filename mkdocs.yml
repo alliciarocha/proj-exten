@@ -1,7 +1,7 @@
-site_name: "Todo List — Gerenciador de Tarefas"
+site_name: "ToDo List"
 site_url: https://alliciarocha.github.io/proj-exten/
 repo_url: https://github.com/alliciarocha/proj-exten
-site_description: "Documentação profissional completa do Todo List com arquitetura MVC e Specification-Driven Development (SDD)."
+site_description: "Documentação do ToDo List com arquitetura MVC."
 site_author: "Allicia"
 
 theme:
@@ -33,23 +33,10 @@ theme:
     - search.highlight
 
 nav:
-  - Home: index.md
-  - Início Rápido: quickstart.md
-  - Documentação:
-      - Arquitetura MVC: documentation/architecture.md
-      - Referência API: documentation/api.md
-      - Especificação SDD: documentation/specification.md
-      - Justificativas do Projeto: documentation/justificativas.md
-  - Deployment:
-      - GitHub Pages: deployment/github-pages.md
-      - Produção: deployment/production.md
-      - Vercel: deployment/vercel.md
-      - Troubleshooting: deployment/troubleshooting.md
-  - Desenvolvimento:
-      - Setup Local: development/setup.md
-      - Estrutura do Projeto: development/project-structure.md
-  - FAQ: faq.md
-  - Changelog: changelog.md
+  - Início: index.md
+  - Arquitetura: architecture.md
+  - Uso: usage.md
+  - Implantação: deployment.md
 
 markdown_extensions:
   - pymdownx.highlight:
