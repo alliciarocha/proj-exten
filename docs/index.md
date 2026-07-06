@@ -1,9 +1,14 @@
 # ToDo List
 
-Este projeto implementa um gerenciador de tarefas simples com arquitetura MVC, persistência em memória e suporte a lembretes visuais.
+Aplicacao web para gerenciamento de tarefas, desenvolvida com a abordagem Specification-Driven Development (SDD) utilizando o toolkit spec-kit. A aplicacao segue a arquitetura Model-View-Controller (MVC), organizada em monorepo, com persistencia em arquivo JSON local.
 
 ## Funcionalidades
 
-- Cadastro de tarefas com título e lembrete opcional
-- Remoção de tarefas da lista
-- Exibição de alertas visuais quando o lembrete é acionado
+- Cadastrar tarefas com titulo, descricao e lembrete opcional
+- Remover tarefas com confirmacao (exclusao logica / soft delete)
+- Marcar tarefas como concluidas
+- Editar tarefas existentes
+- Filtrar por status (todas, pendentes, concluidas)
+- Lembretes e estatisticas atualizadas em tempo real
+- Sanitizacao de entrada contra XSS (OWASP)
+- Logs estruturados de transacao (observabilidade)
